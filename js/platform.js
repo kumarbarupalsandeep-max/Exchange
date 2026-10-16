@@ -132,6 +132,7 @@
       body = '<div class="platform-grid">'+[["Overview","This feature needs a verified data source and service integration."],["How it works","Review the process, fees, limits, and risks before using a financial service."],["Security","Never share passwords, recovery phrases, private keys, or API secrets."],["Service status","This is a frontend preview; no account or financial service is connected."]].map((x,i)=>card(x[0],x[1],'<span class="muted">Section '+(i+1)+'</span>')).join('')+'</div>'+card("Related pages","Use these links to navigate the platform.",'<div class="platform-links"><a href="markets.html">Markets →</a><a href="trade.html">Trade →</a><a href="wallet.html">Wallet →</a><a href="support.html">Support →</a></div>');
     }
 
+  }
   content.innerHTML = body + safeNote + '<div class="platform-links">'+pages.map(p=>'<a href="'+p[0]+'.html">'+esc(p[1])+'</a>').join('')+'</div><div class="platform-footer">Exchange frontend · No real orders, wallet transfers, authentication, or account changes are performed here.</div>';
   const formEl = $("localForm");
   if (formEl) formEl.addEventListener("submit", async (e) => {
