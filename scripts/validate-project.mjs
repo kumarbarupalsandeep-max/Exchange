@@ -15,7 +15,12 @@ const fail = (message) => failures.push(message);
 
 const expectedPages = [
   "index.html", "markets.html", "trade.html", "earn.html", "wallet.html",
-  "login.html", "register.html", "support.html", "about.html"
+  "login.html", "register.html", "support.html", "about.html",
+  "platform.html", "convert.html", "buy-crypto.html", "p2p.html", "futures.html",
+  "orders.html", "order-history.html", "deposit.html", "withdraw.html", "transfer.html",
+  "profile.html", "security.html", "verification.html", "rewards.html", "launchpool.html",
+  "trading-bots.html", "copy-trading.html", "academy.html", "news.html", "announcements.html",
+  "referral.html", "portfolio.html", "transactions.html", "api-management.html", "help-center.html"
 ];
 for (const page of expectedPages) {
   if (existsSync(resolve(root, page))) pass(`page exists: ${page}`);
@@ -40,7 +45,7 @@ if (!failures.some((message) => message.includes("broken local reference"))) {
   pass(`local HTML references resolve (${checkedReferences} checked)`);
 }
 
-for (const file of ["js/script.js", "js/pages.js"]) {
+for (const file of ["js/script.js", "js/pages.js", "js/platform.js"]) {
   if (!existsSync(resolve(root, file))) {
     fail(`missing JavaScript file: ${file}`);
     continue;
@@ -50,7 +55,7 @@ for (const file of ["js/script.js", "js/pages.js"]) {
   else fail(`JavaScript syntax error in ${file}: ${result.stderr || result.stdout}`);
 }
 
-for (const file of ["css/style.css", "css/pages.css"]) {
+for (const file of ["css/style.css", "css/pages.css", "css/platform.css"]) {
   if (!existsSync(resolve(root, file))) {
     fail(`missing stylesheet: ${file}`);
     continue;
