@@ -1,33 +1,54 @@
- # Exchange — Frontend Preview
+# Exchange — Frontend Prototype
 
-A responsive cryptocurrency-exchange frontend concept built with plain HTML, CSS, and JavaScript. It takes inspiration from common crypto exchange patterns (market overview, asset watchlists, gainers/losers, search, and trading entry points) while using its own name and visual identity. It is not affiliated with Binance.
+A responsive multi-page cryptocurrency-exchange interface built with plain HTML, CSS, and JavaScript. It uses an original Exchange visual identity and common exchange UI patterns. It is not affiliated with Binance.
+
+## Project structure
+
+```text
+Exchange/
+├── index.html
+├── markets.html
+├── trade.html
+├── earn.html
+├── wallet.html
+├── login.html
+├── register.html
+├── support.html
+├── about.html
+├── css/
+│   ├── style.css
+│   └── pages.css
+├── js/
+│   ├── script.js
+│   └── pages.js
+├── README.md
+└── PROJECT_STATUS.md
+```
 
 ## Run locally
 
-No build step or package installation is required.
+1. Clone or download this repository.
+2. Open the project folder in VS Code.
+3. Start VS Code Live Server from `index.html`, or open `index.html` directly in a modern browser.
+4. Navigate using the shared page menus.
 
-1. Download or clone the repository.
-2. Open index.html in a browser, or use VS Code Live Server.
-3. Interact with the market filters, favorites, asset search, theme toggle, and Trade buttons.
+No package installation or build step is required.
 
-## Current features
+## Pages
 
-- Responsive desktop and mobile navigation
-- Market overview and asset table
-- Search by asset name or symbol
-- All assets, top gainers, top losers, and favorites filters
-- Favorite toggles and show-more interaction
-- Dark/light theme toggle (saved in local browser storage)
-- Sample sparkline charts and toast feedback
-- No framework or backend dependency
+- **Home:** hero, market summary, sample sparklines, asset filters, favorites, search, theme toggle.
+- **Markets:** searchable sample coin table and gainers/decliners filters.
+- **Spot trade:** order-entry layout, selected pair from URL, quantity × price calculation, simulated-only buy/sell actions.
+- **Earn:** informational product concept cards; no APR or real investment products.
+- **Wallet:** placeholder balances and transaction history.
+- **Login / Register:** client-side demo forms only.
+- **Help Center:** FAQ and a non-submitting demo support form.
+- **About:** project scope and production requirements.
 
-## Important
+## Important limitations
 
-All market prices, percentages, market caps, and sparklines are **illustrative demo data**, not live market data. Login, signup, trading, account balances, deposits, withdrawals, and all backend API tasks are intentionally not implemented yet. Do not use this frontend to make financial decisions or submit real orders.
+This is **frontend-only**. Prices, volumes, order book values, charts, and balances are sample/demo data and are not real-time. Login and registration do not create accounts; orders are not transmitted; no deposits, withdrawals, wallet custody, or real-money trading are implemented. Do not enter real passwords or send crypto to this project.
 
-## Planned next tasks
+Before production, this project needs a secure backend, verified market data, authentication/session management, exchange integration, order validation, wallet security, rate limiting, monitoring, tests, legal/compliance review, and a security audit.
 
-1. Connect a market-data API and show its source/timestamp.
-2. Add backend authentication and account screens.
-3. Add a sandbox-only trading interface.
-4. Add portfolio and order history after backend design and security review.
+See [PROJECT_STATUS.md](PROJECT_STATUS.md) for the current completion meter and remaining tasks.
