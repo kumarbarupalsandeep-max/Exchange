@@ -4,8 +4,18 @@ Last updated: 2026-10-16
 
 ## Completion meter
 
-The repository contains 34 HTML pages (9 original pages, 24 feature screens, and 1 feature directory). Page files existing is not the same as production completion. Several added screens are frontend previews and still need visual QA, richer page-specific content, and service integrations.
+This meter separates the static frontend deliverable from production exchange operations. All 34 planned HTML screens now have page-specific layouts/content and shared responsive UI; static checks are wired to run in GitHub Actions. A passing workflow run and real-browser QA still need confirmation.
 
+```text
+Planned frontend HTML screens       [████████████████████] 34/34 = 100%
+Page-specific feature UI/content    [████████████████████] 100% frontend scope
+Shared form/preview interactions    [████████████████░░░░] ~80% interactive preview scope
+Static validation workflow          [Added; first run not yet verified]
+Browser visual / responsive QA      [░░░░░░░░░░░░░░░░░░░░] Pending
+Accessibility / cross-browser QA    [░░░░░░░░░░░░░░░░░░░░] Pending
+Secure backend / real authentication [Not implemented]
+Real order execution / custody       [Not implemented]
+Deposit / withdrawal provider        [Not implemented]
 ```text
 HTML page files present              [████████████████████] 34/34 = 100%
 Shared feature UI + local validation [████████████████░░░░] ~80% implemented
@@ -51,6 +61,7 @@ Deposit / withdrawal provider        [Not implemented]
 
 - [x] JavaScript syntax parsed for `js/script.js`, `js/pages.js`, and `js/live-market.js`
 - [x] HTML local asset references inspected for core pages
+- [ ] Confirm the first GitHub Actions static validation run passes
 - [ ] Run `node scripts/validate-project.mjs` against a local clone
 - [ ] Test all pages in a real browser at desktop, tablet, and mobile sizes
 - [ ] Test network failure, keyboard navigation, screen-reader labels, and form validation
