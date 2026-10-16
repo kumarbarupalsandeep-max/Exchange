@@ -13,6 +13,10 @@ A multi-page cryptocurrency market website built with HTML, CSS, and JavaScript.
 - **Help Center:** FAQs and contact form layout.
 - **About:** project information and limitations.
 
+## Expanded platform screens
+
+Added feature screens: [All Features](platform.html), Convert, Buy Crypto, P2P Marketplace, Futures, Open Orders, Order History, Deposit, Withdraw, Internal Transfer, Profile, Security Center, Identity Verification, Rewards Hub, Launchpool, Trading Bots, Copy Trading, Academy, Market News, Announcements, Referral Program, Portfolio, Transaction History, API Management, and Help Center. These screens share responsive layouts and local preview interactions. Any financial/account action remains non-operational until secure backend/provider integration is implemented.
+
 ## Project structure
 
 ```text
