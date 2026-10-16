@@ -4,48 +4,56 @@ Last updated: 2026-10-16
 
 ## Completion meter
 
-These are manual scope estimates, not automated test coverage.
+**100% means the agreed frontend-demo feature scope is implemented, not that this is a production cryptocurrency exchange.** Percentages below are manual scope estimates, not test coverage.
 
-- Frontend page coverage: **90%**
-- Folder/file organization: **100%**
-- Main navigation and core demo interactions: **90%**
-- Responsive and accessibility QA: **45%**
-- Static checks (JS syntax, CSS braces, relative HTML links): **100% checked**\n- Browser QA / automated browser tests: **0% verified**
+- Frontend demo feature scope: **100% implemented**
+- Required pages and folder organization: **100%**
+- Main navigation and core demo interactions: **100% implemented**
+- Repeatable static validation script: **Added** — run it locally before release
+- Manual static checks previously completed: JavaScript syntax, CSS brace balance, and local HTML references
+- Browser QA at desktop/tablet/mobile: **Not yet verified**
 - Live market API: **0%**
 - Backend / database: **0%**
 - Authentication and account security: **0%**
 - Real exchange orders / wallet / deposits / withdrawals: **0%**
 
 ```text
-Frontend prototype (estimated)  [██████████████████░░] 90%
-Full production exchange        [█████░░░░░░░░░░░░░░░] 25%
+Frontend demo feature scope       [████████████████████] 100%
+Production exchange readiness     [█████░░░░░░░░░░░░░░░] ~25% (rough planning estimate)
+Browser QA                        [░░░░░░░░░░░░░░░░░░░░] Not verified
 ```
 
-**Important:** The production-exchange percentage is a rough planning estimate, not a claim that a secure or deployable exchange exists. Frontend completeness does not imply trading readiness.
+The frontend demo scope is implemented, but browser QA is still required before calling the website release-verified. The production-readiness estimate is a rough planning figure, not a claim that a secure or deployable exchange exists.
 
 ## Implemented in the frontend
 
-- [x] Home page with market cards/table
-- [x] Markets page with search and gainers/decliners filters
-- [x] Spot trading UI with selected market pair and total calculation
+- [x] Home page with sample market cards/table, search, filters, favorites, and theme toggle
+- [x] Markets page with searchable sample coin table and gainers/decliners filters
+- [x] Spot trading UI with selected market pair and quantity × price calculation
+- [x] Simulated-only Buy/Sell feedback; clearly warns that orders are not sent
 - [x] Earn informational page
-- [x] Wallet placeholder
-- [x] Login and registration demo forms
-- [x] Help Center / FAQ / demo contact form
-- [x] About page
+- [x] Wallet placeholder with empty transaction state
+- [x] Login and registration demo forms with clear backend-not-connected messaging
+- [x] Help Center / FAQ / demo contact form with clear not-sent messaging
+- [x] About page and project limitation notes
 - [x] CSS assets grouped under `css/`
 - [x] JavaScript assets grouped under `js/`
 - [x] HTML asset paths updated for folders
-- [x] Fixed homepage JS crash caused by references to removed login/signup CTA IDs
+- [x] Fixed homepage JavaScript references to removed CTA IDs
+- [x] Market Trade actions pass the selected symbol to the trade page
+- [x] README and project status documentation
+- [x] Added dependency-free static validator at `scripts/validate-project.mjs`
 
-## Remaining work to call the frontend prototype complete
+## Final release checks
 
-- [ ] Run browser QA at desktop, tablet, and mobile sizes
-- [ ] Verify every link, form state, and keyboard interaction in a browser
-- [ ] Improve consistency between homepage styling and secondary pages
-- [ ] Add loading, error, empty, and success states consistently
-- [x] Static check JavaScript syntax and CSS brace balance\n- [ ] Add automated HTML/CSS/JS checks and browser smoke tests
-- [ ] Confirm GitHub Pages deployment and test the published URL
+- [x] JavaScript syntax checked previously
+- [x] CSS brace balance checked previously
+- [x] Local HTML references checked previously
+- [x] Added repeatable static smoke-check script
+- [ ] Run `node scripts/validate-project.mjs` locally and resolve any reported failures
+- [ ] Open the site in a browser and test desktop, tablet, and mobile layouts
+- [ ] Verify keyboard navigation, focus states, form feedback, and all links in a browser
+- [ ] Confirm GitHub Pages deployment and test the published URL if deployment is desired
 
 ## Production work (separate phase)
 
