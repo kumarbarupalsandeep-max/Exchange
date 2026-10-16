@@ -4,15 +4,17 @@ Last updated: 2026-10-16
 
 ## Completion meter
 
-This project is being prepared as a complete **frontend-only website**, not a full exchange service. The frontend requests read-only live public market data; private account services and transaction execution cannot safely be implemented by static frontend code alone.
+The repository contains 34 HTML pages (9 original pages, 24 feature screens, and 1 feature directory). Page files existing is not the same as production completion. Several added screens are frontend previews and still need visual QA, richer page-specific content, and service integrations.
 
 ```text
-Page coverage and navigation       [████████████████████] 100% implemented
-Public live market ticker UI       [████████████████████] Integrated (provider/network dependent)
-JavaScript syntax checks           [████████████████████] Passed
-Browser visual/accessibility QA    [░░░░░░░░░░░░░░░░░░░░] Not verified in browser
-Backend / secure authentication   [Not part of frontend-only scope]
-Real orders / deposits / custody   [Not part of frontend-only scope]
+HTML page files present              [████████████████████] 34/34 = 100%
+Shared feature UI + local validation [██████████████░░░░░░] ~70% implemented
+Live public market ticker            [Integrated; browser verification pending]
+Browser visual / responsive QA       [░░░░░░░░░░░░░░░░░░░░] Not run
+Accessibility / cross-browser QA     [░░░░░░░░░░░░░░░░░░░░] Not run
+Secure backend / real authentication [Not implemented]
+Real order execution / custody       [Not implemented]
+Deposit / withdrawal provider        [Not implemented]
 ```
 
 ## Expanded frontend pages (added 2026-10-16)
