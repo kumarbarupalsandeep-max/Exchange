@@ -15,6 +15,18 @@ Backend / secure authentication   [Not part of frontend-only scope]
 Real orders / deposits / custody   [Not part of frontend-only scope]
 ```
 
+## Expanded frontend pages (added 2026-10-16)
+
+- [x] Feature directory (`platform.html`) with links to 24 additional screens.
+- [x] Convert, Buy Crypto, P2P, Futures, Open Orders, Order History.
+- [x] Deposit, Withdraw, Internal Transfer, Portfolio, Transaction History.
+- [x] Profile, Security Center, Identity Verification, API Management.
+- [x] Rewards Hub, Launchpool, Trading Bots, Copy Trading, Referral Program.
+- [x] Academy, Market News, Announcements, Help Center.
+- [x] Shared responsive styles and client-side preview interactions.
+- [ ] Browser QA and accessibility review remains pending.
+- [ ] Secure backend, real authentication, order execution, and wallet/provider integration remain out of scope.
+
 ## Frontend pages
 
 - [x] Home page with live ticker prices, 24-hour changes, volume and market filters
