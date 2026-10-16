@@ -28,8 +28,8 @@ document.getElementById("showMore").addEventListener("click",function(){state.sh
 document.getElementById("themeToggle").addEventListener("click",function(){state.theme=state.theme==="dark"?"light":"dark";setTheme()});
 document.getElementById("dismissNotice").addEventListener("click",function(){document.querySelector(".announcement").remove()});
 document.getElementById("mobileMenu").addEventListener("click",function(){var nav=document.querySelector(".main-nav"),open=nav.style.display==="flex";nav.style.display=open?"none":"flex";if(!open){nav.style.position="absolute";nav.style.top="98px";nav.style.left="15px";nav.style.right="15px";nav.style.zIndex="9";nav.style.padding="18px";nav.style.flexDirection="column";nav.style.alignItems="flex-start";nav.style.background="var(--panel)";nav.style.border="1px solid var(--line)";nav.style.borderRadius="12px"}});
-document.getElementById("loginBtn").addEventListener("click",function(){toast("Login UI will be added in the authentication task.")});
-document.getElementById("signupBtn").addEventListener("click",function(){toast("Signup UI will be added in the authentication task.")});
-document.getElementById("getStarted").addEventListener("click",function(){toast("Welcome! Account creation will be connected later.")});
+document.getElementById("loginBtn")?.addEventListener("click",function(){toast("Login page is available in this frontend demo.")});
+document.getElementById("signupBtn")?.addEventListener("click",function(){toast("Signup page is available in this frontend demo.")});
+document.getElementById("getStarted")?.addEventListener("click",function(){toast("Open the signup page to preview account creation.")});
 document.addEventListener("keydown",function(event){if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();document.getElementById("globalSearch").focus()}if(event.key==="Escape"&&document.activeElement.blur)document.activeElement.blur()});
 document.getElementById("year").textContent=new Date().getFullYear();setTheme();render();
