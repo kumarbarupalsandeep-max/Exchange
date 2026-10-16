@@ -8,7 +8,7 @@ The repository contains 34 HTML pages (9 original pages, 24 feature screens, and
 
 ```text
 HTML page files present              [████████████████████] 34/34 = 100%
-Shared feature UI + local validation [██████████████░░░░░░] ~70% implemented
+Shared feature UI + local validation [████████████████░░░░] ~80% implemented
 Live public market ticker            [Integrated; browser verification pending]
 Browser visual / responsive QA       [░░░░░░░░░░░░░░░░░░░░] Not run
 Accessibility / cross-browser QA     [░░░░░░░░░░░░░░░░░░░░] Not run
@@ -25,10 +25,11 @@ Deposit / withdrawal provider        [Not implemented]
 - [x] Profile, Security Center, Identity Verification, API Management.
 - [x] Rewards Hub, Launchpool, Trading Bots, Copy Trading, Referral Program.
 - [x] Academy, Market News, Announcements, Help Center.
-- [x] Shared responsive styles and client-side preview interactions.
+- [x] Shared responsive styles, keyboard-focus states, and client-side preview interactions.
+- [x] P2P example filters and searchable help topics work locally; sample offer rows are labelled demo-only.
 - [x] Local validation for key forms (positive amounts, different assets/wallets, grid bounds).
 - [x] Convert screen can request public price data for an indicative estimate.
-- [ ] Complete page-specific production UI and real data integration remain pending.
+- [ ] Some feature pages remain informational/local previews; page-specific production data and provider integrations remain pending.
 - [ ] Browser QA and accessibility review remains pending.
 - [ ] Secure backend, real authentication, order execution, and wallet/provider integration remain out of scope.
 
