@@ -55,3 +55,27 @@
 .platform-table td{font-size:12px}
 .platform-footer{margin-top:28px;line-height:1.8}
 @media(max-width:800px){.platform-header{padding-top:20px}.platform-grid{gap:12px}.platform-card{padding:18px}}
+
+/* Cross-page design alignment with the Exchange trading terminal */
+.platform-shell{width:min(100% - 48px,1240px);margin:0 auto;padding:34px 0 64px}
+.platform-header{gap:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.platform-header h1{font-size:clamp(30px,3.6vw,42px);letter-spacing:-.045em;line-height:1.12}
+.platform-header p{max-width:720px;line-height:1.75}
+.platform-note{border:1px solid #f0b90b35;background:#f0b90b0a;color:var(--muted);padding:14px 16px}
+.platform-note strong{color:var(--text)}
+.platform-card,.platform-panel,.platform-stat{box-shadow:0 12px 32px #00000012;transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease}
+.platform-card:hover{border-color:#f0b90b4d;transform:translateY(-2px)}
+.platform-btn{transition:filter .18s ease,transform .18s ease}
+.platform-btn:hover{filter:brightness(1.06)}
+.platform-btn:active{transform:translateY(1px)}
+.platform-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+.platform-table{font-variant-numeric:tabular-nums}
+.platform-table tbody tr{transition:background .15s ease}
+.platform-table tbody tr:hover{background:#ffffff06}
+.platform-footer{border-top:1px solid var(--line);padding-top:22px}
+#platformNav a{font-weight:600;transition:color .18s ease}
+#platformNav a:hover,#platformNav a[aria-current="page"]{color:var(--yellow)}
+.platform-shell :focus-visible{outline:2px solid var(--yellow);outline-offset:3px}
+@media(max-width:800px){.platform-shell{width:min(100% - 32px,1240px);padding-top:22px}.platform-header{align-items:flex-start;flex-direction:column}.platform-header .platform-btn{align-self:flex-start}}
+@media(max-width:480px){.platform-shell{width:calc(100% - 28px)}.platform-header h1{font-size:30px}.platform-card{padding:16px}}
+@media(prefers-reduced-motion:reduce){.platform-shell *{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
