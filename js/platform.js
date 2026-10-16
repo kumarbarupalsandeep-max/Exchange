@@ -94,15 +94,44 @@
     body = card("Search support topics","Search common product and safety questions.",'<label>Search topics<input id="helpSearch" class="platform-search" type="search" placeholder="Try deposits, security, orders…"/></label><div id="helpResults" class="platform-grid"></div>') + card("Common questions","Are orders real? No. Can I deposit funds? No. Is the market feed an execution quote? No, it is public market information.",'<a href="support.html">Contact support →</a>');
   } else {
     const collection = {
-      academy:[["Crypto basics","Understand assets, blockchains, wallets, and networks."],["Order types","Learn the difference between market, limit, and stop orders."],["Account security","Learn about 2FA, phishing, and recovery phrases."]],
-      news:[["Market overview","Use the Markets page for public ticker values; this page is not a verified news feed."],["Volatility","Crypto prices can move quickly and liquidity can change."],["Research disclaimer","Content is educational, not investment advice."]],
-      announcements:[["Platform updates","Feature releases and maintenance notices will appear here when a source is connected."],["Security notices","Check official channels and beware of impersonators."],["Market-data status","Public API availability depends on the provider and network."]],
-      rewards:[["Learning milestones","Reward tracking is not connected."],["Campaigns","Campaign eligibility needs server-side rules."],["Referral rewards","No reward balance is available in this frontend."]],
-      launchpool:[["Project overview","Project and pool data is illustrative until a verified source is connected."],["Eligibility","Participation may require identity checks and regional eligibility."],["Risk notes","Review tokenomics, lockups, and project documentation."]],
-      "copy-trading":[["Conservative profile","Illustrative profile only; no real trader performance is shown."],["Momentum profile","Past performance does not guarantee future results."],["Risk controls","Check drawdown, fees, leverage, and exposure before copying."]]
+      academy: {
+        intro: "A structured learning path from first principles to safer platform use.",
+        cards: [["01 · Crypto basics","What a blockchain is, how tokens differ, and why prices fluctuate."],["02 · Wallets and networks","Understand public addresses, confirmations, network fees, and seed-phrase safety."],["03 · Trading essentials","Learn market vs limit orders, spread, liquidity, and slippage."],["04 · Risk management","Position sizing, diversification, volatility, and avoiding leverage traps."]],
+        rows: [["Beginner","Blockchain and tokens","10 min"],["Beginner","Wallet and network safety","12 min"],["Intermediate","Order types and liquidity","15 min"],["Intermediate","Risk and position sizing","14 min"]]
+      },
+      news: {
+        intro: "Market context and educational notes. This is not a live newsroom or investment recommendation.",
+        cards: [["Market pulse","Use the Markets screen for current public ticker values; verify prices independently."],["Volatility watch","Large moves can be accompanied by wider spreads, thinner liquidity, and higher slippage."],["Research checklist","Check primary sources, token supply, liquidity, security history, and conflicts of interest."],["Risk reminder","News and social posts may be inaccurate, promotional, or already priced into markets."]],
+        rows: [["Market data","Public ticker values","Open Markets"],["Risk education","Volatility and liquidity","Read guidance"],["Due diligence","Verify primary sources","Use checklist"]]
+      },
+      announcements: {
+        intro: "A notice board layout for product, maintenance, and security updates. No official live announcement feed is connected.",
+        cards: [["Product updates","Release notes will appear here after an authenticated publishing source is integrated."],["Maintenance notices","Scheduled downtime and service incidents need an operational status feed."],["Security advisories","Use only verified official channels. Never trust unsolicited messages asking for seed phrases."],["Market data status","Public data may be delayed or unavailable due to provider/network limits."]],
+        rows: [["Product","Feature releases","Feed not connected"],["Operations","Maintenance windows","Feed not connected"],["Security","Verified advisories","Feed not connected"]]
+      },
+      rewards: {
+        intro: "A rewards dashboard layout. Balances, eligibility, campaigns, and payouts are not connected to an account service.",
+        cards: [["Learning rewards","Illustrative task: finish the wallet-safety lesson. No reward is issued."],["Campaign participation","Campaign eligibility and regional restrictions must be checked server-side."],["Referral rewards","Referral attribution and payout status require secure account tracking."],["Reward safety","Never pay an upfront fee or reveal recovery phrases to claim a reward."]],
+        rows: [["Learn","Complete safety lesson","Preview only"],["Campaigns","Review eligibility","Not connected"],["Referral","Invite tracking","Not connected"]]
+      },
+      launchpool: {
+        intro: "Explore how token launch pools are commonly presented. Project data and staking are illustrative only.",
+        cards: [["Project overview","Review token purpose, tokenomics, distribution, unlock schedule, and official documentation."],["Pool participation","A real pool requires authenticated balances, eligibility checks, and audited reward calculations."],["Lock-up and redemption","Understand subscription windows, lock periods, settlement, and redemption rules."],["Risk checklist","Token prices may fall; participation is not a guaranteed return and may be region-restricted."]],
+        rows: [["Project details","Tokenomics and docs","Provider required"],["Pool terms","Lock-up and rewards","Provider required"],["My participation","Personal allocations","Sign-in required"]]
+      },
+      "copy-trading": {
+        intro: "Compare strategy concepts without implying verified trader performance. Copying a strategy can lose money.",
+        cards: [["Lower-turnover approach","Evaluate maximum drawdown, trade frequency, leverage, and time horizon."],["Momentum approach","Trend-following may suffer during choppy markets and sudden reversals."],["Portfolio controls","Set exposure caps, loss limits, and a clear stop-copying rule before allocating."],["Performance due diligence","Check verified track records, fees, survivorship bias, and whether results are audited."]],
+        rows: [["Strategy profile","Risk metrics","Not live"],["Trade history","Verified performance","Not connected"],["Allocation","Exposure controls","Preview only"]]
+      }
     };
-    body = '<div class="platform-grid">'+(collection[current]||[["Overview","This feature needs its data source and service integration."],["Getting started","Read the instructions before connecting any account."],["Service status","No live service is connected."]]).map(x=>card(x[0],x[1],'<a href="about.html">Learn about this project →</a>')).join('')+'</div>';
-  }
+    const page = collection[current];
+    if (page) {
+      body = '<div class="platform-note">'+esc(page.intro)+'</div><div class="platform-grid">'+page.cards.map((x,i)=>card(x[0],x[1],'<span class="muted">Guide '+(i+1)+' · informational</span>')).join('')+'</div>'+card("Page overview","A clearer summary of the sections and data this screen is designed to show.",table(["Section","What it contains","Availability"],page.rows,"No data available.")) + card("Next step","Explore related screens or review the project overview before using any real financial service.",'<div class="platform-links"><a href="markets.html">View markets →</a><a href="support.html">Support →</a><a href="about.html">About Exchange →</a></div>');
+    } else {
+      body = '<div class="platform-grid">'+[["Overview","This feature needs a verified data source and service integration."],["How it works","Review the process, fees, limits, and risks before using a financial service."],["Security","Never share passwords, recovery phrases, private keys, or API secrets."],["Service status","This is a frontend preview; no account or financial service is connected."]].map((x,i)=>card(x[0],x[1],'<span class="muted">Section '+(i+1)+'</span>')).join('')+'</div>'+card("Related pages","Use these links to navigate the platform.",'<div class="platform-links"><a href="markets.html">Markets →</a><a href="trade.html">Trade →</a><a href="wallet.html">Wallet →</a><a href="support.html">Support →</a></div>');
+    }
+
   content.innerHTML = body + safeNote + '<div class="platform-links">'+pages.map(p=>'<a href="'+p[0]+'.html">'+esc(p[1])+'</a>').join('')+'</div><div class="platform-footer">Exchange frontend · No real orders, wallet transfers, authentication, or account changes are performed here.</div>';
   const formEl = $("localForm");
   if (formEl) formEl.addEventListener("submit", async (e) => {
