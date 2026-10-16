@@ -1,6 +1,17 @@
-# Exchange — Frontend Prototype
+# Exchange — Cryptocurrency Market Frontend
 
-A multi-page cryptocurrency-exchange demo built with plain HTML, CSS, and JavaScript. It uses an original Exchange visual identity and common exchange UI patterns. It is not affiliated with Binance.
+A multi-page cryptocurrency market website built with HTML, CSS, and JavaScript. It includes a read-only public market ticker feed and responsive market/account interface pages. This is an independent project and is not affiliated with Binance.
+
+## Pages
+
+- **Home:** market overview, search, watchlist favorites, filters, theme toggle, live ticker prices and 24-hour changes.
+- **Markets:** live public ticker prices, 24-hour changes and quote volume, search, gainers/decliners filters and links to trade pairs.
+- **Trade:** selected pair, live last price, order total calculator and order-entry interface.
+- **Earn:** earning product information layout.
+- **Wallet:** account/wallet layout.
+- **Login / Register:** form layouts with client-side validation.
+- **Help Center:** FAQs and contact form layout.
+- **About:** project information and limitations.
 
 ## Project structure
 
@@ -20,7 +31,8 @@ Exchange/
 │   └── pages.css
 ├── js/
 │   ├── script.js
-│   └── pages.js
+│   ├── pages.js
+│   └── live-market.js
 ├── scripts/
 │   └── validate-project.mjs
 ├── README.md
@@ -29,40 +41,19 @@ Exchange/
 
 ## Run locally
 
-1. Clone or download this repository.
-2. Open the project folder in VS Code.
-3. Start VS Code Live Server from `index.html`, or open `index.html` directly in a modern browser.
-4. Navigate using the shared page menus.
+1. Clone or download the repository.
+2. Open the folder in VS Code.
+3. Start Live Server from `index.html`.
+4. The market pages request read-only public ticker data from Binance and refresh periodically. Internet access is required.
 
-No package installation or build step is required. Node.js is only needed to run the optional static validator.
-
-## Validate the project
-
-From the repository root, run:
+No build step is needed. Run static checks from the repository root with:
 
 ```bash
 node scripts/validate-project.mjs
 ```
 
-The validator checks expected pages, local HTML file references, JavaScript syntax, and CSS brace balance. It is a static smoke check; it does not replace visual browser testing, accessibility testing, or a security audit.
+## Important scope boundary
 
-## Pages and demo features
+This repository is **frontend only**. The public ticker API provides market data, not user accounts or transaction services. Login/registration do not authenticate users; the trade calculator does not execute orders; wallet balances, deposits, withdrawals, custody, earn subscriptions, and support-ticket delivery are not connected. These must not be represented as operational services without secure backend/provider integration.
 
-- **Home:** hero, sample market cards/table, sparklines, asset filters, favorites, search, theme toggle.
-- **Markets:** searchable sample coin table and gainers/decliners filters.
-- **Spot trade:** order-entry layout, selected pair from URL, quantity × price calculation, simulated-only Buy/Sell feedback.
-- **Earn:** informational product concept cards; no APR or real investment products.
-- **Wallet:** placeholder balances and transaction history.
-- **Login / Register:** client-side demo forms only.
-- **Help Center:** FAQ and a non-submitting demo support form.
-- **About:** project scope and production requirements.
-
-## Completion status
-
-The frontend demo feature scope is implemented. The status report distinguishes implemented demo features from browser QA and production readiness. See [PROJECT_STATUS.md](PROJECT_STATUS.md) for the completion meter and remaining release checks.
-
-## Important limitations
-
-This is **frontend-only**. Prices, volumes, order book values, charts, and balances are sample/demo data and are not real-time. Login and registration do not create accounts; orders are not transmitted; no deposits, withdrawals, wallet custody, or real-money trading are implemented. Do not enter real passwords or send crypto to this project.
-
-Before production, this project needs a secure backend, verified market data, authentication/session management, exchange integration, order validation, wallet security, rate limiting, monitoring, tests, legal/compliance review, and a security audit.
+Do not enter real passwords or send cryptocurrency to this site. Before enabling financial transactions, add a secure backend, identity/session controls, exchange integration, order validation, wallet/custody controls, monitoring, and legal/security review.
