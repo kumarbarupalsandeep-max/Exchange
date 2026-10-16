@@ -32,4 +32,19 @@ document.getElementById("loginBtn")?.addEventListener("click",function(){toast("
 document.getElementById("signupBtn")?.addEventListener("click",function(){toast("Signup page is available in this frontend demo.")});
 document.getElementById("getStarted")?.addEventListener("click",function(){toast("Open the signup page to preview account creation.")});
 document.addEventListener("keydown",function(event){if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==="k"){event.preventDefault();document.getElementById("globalSearch").focus()}if(event.key==="Escape"&&document.activeElement.blur)document.activeElement.blur()});
-document.getElementById("year").textContent=new Date().getFullYear();setTheme();render();
+async function refreshHomeMarketData(){
+ try{
+  var symbols=assets.map(function(a){return a.symbol+"USDT"});
+  var response=await fetch("https://api.binance.com/api/v3/ticker/24hr?symbols="+encodeURIComponent(JSON.stringify(symbols)),{cache:"no-store"});
+  if(!response.ok)throw new Error("Public market API unavailable");
+  var tickers=await response.json(),lookup=new Map(tickers.map(function(t){return [t.symbol,t]}));
+  assets.forEach(function(a){var t=lookup.get(a.symbol+"USDT");if(t){a.price=Number(t.lastPrice);a.change=Number(t.priceChangePercent);a.cap="$"+(Number(t.quoteVolume)/1e6).toLocaleString("en-US",{maximumFractionDigits:1})+"M vol";}});
+  render();
+  var status=document.getElementById("resultCount");if(status)status.textContent="Live public market prices · updated "+new Date().toLocaleTimeString();
+  var btc=lookup.get("BTCUSDT");var btcPrice=document.querySelector(".card-price strong");if(btc&&btcPrice)btcPrice.textContent=money(Number(btc.lastPrice));
+  var btcChange=document.querySelector(".card-price em");if(btc&&btcChange){var change=Number(btc.priceChangePercent);btcChange.textContent=(change>0?"+":"")+change.toFixed(2)+"%";btcChange.classList.toggle("up",change>=0);btcChange.classList.toggle("down",change<0);}
+  var vol=document.querySelector(".card-volume strong");if(btc&&vol)vol.textContent="$"+(Number(btc.quoteVolume)/1e9).toFixed(2)+"B";
+  document.querySelectorAll("[data-live-status]").forEach(function(n){n.textContent="Live public market feed · updated "+new Date().toLocaleTimeString()});
+ }catch(error){var status=document.getElementById("resultCount");if(status)status.textContent="Market feed unavailable · showing last available values";console.warn(error);}
+}
+document.getElementById("year").textContent=new Date().getFullYear();setTheme();render();refreshHomeMarketData();window.setInterval(refreshHomeMarketData,30000);
