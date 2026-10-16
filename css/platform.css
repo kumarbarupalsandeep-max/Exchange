@@ -35,3 +35,23 @@
 .platform-table th{background:var(--panel2);position:sticky;top:0}
 .platform-table tr:hover td{background:color-mix(in srgb,var(--panel2) 55%,transparent)}
 @media(prefers-reduced-motion:reduce){.platform-card,.platform-links a,.platform-btn{transition:none}}
+
+/* V2 page-system refinement */
+.platform-header{padding-top:32px;padding-bottom:34px}
+.platform-header h1{font-size:clamp(36px,4.4vw,54px);line-height:1.04}
+.platform-header p{font-size:14px;line-height:1.8;max-width:720px}
+.platform-grid{gap:18px;margin-top:30px}
+.platform-card{border-radius:17px;padding:23px;box-shadow:0 14px 35px #00000010}
+.platform-card h2,.platform-card h3{font-size:clamp(18px,1.8vw,22px);line-height:1.25}
+.platform-card p{font-size:13px;line-height:1.75}
+.platform-stat{font:700 28px/1.15 "Space Grotesk","DM Sans",sans-serif;letter-spacing:-.04em}
+.platform-form input,.platform-form select,.platform-form textarea,.platform-search{min-height:44px;border-radius:10px;transition:border-color .2s,box-shadow .2s}
+.platform-form input:focus,.platform-form select:focus,.platform-form textarea:focus,.platform-search:focus{box-shadow:0 0 0 3px #f0b90b12}
+.platform-btn{min-height:44px;border-radius:10px}
+.platform-btn.secondary{background:var(--panel);border-color:var(--line)}
+.platform-note{line-height:1.7;border-radius:12px}
+.platform-table-wrap{box-shadow:0 12px 32px #0000000d}
+.platform-table th{font-size:10px;letter-spacing:.04em;text-transform:uppercase}
+.platform-table td{font-size:12px}
+.platform-footer{margin-top:28px;line-height:1.8}
+@media(max-width:800px){.platform-header{padding-top:20px}.platform-grid{gap:12px}.platform-card{padding:18px}}
