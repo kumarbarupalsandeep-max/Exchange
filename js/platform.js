@@ -63,7 +63,7 @@
   } else if (current === "buy-crypto") {
     body = card("Purchase flow preview","Review fiat and crypto selections. Payment availability, fees, and final purchase require a verified payment provider.",form([{label:"Fiat currency",name:"fiat",type:"select",options:["INR","USD","EUR"]},{label:"Crypto asset",name:"asset",type:"select",options:assetOptions},{label:"Purchase amount",name:"amount",type:"number",placeholder:"100",min:"1",step:"any",required:true},{label:"Payment method",name:"payment",type:"select",options:["Choose payment method","Bank transfer","UPI (provider integration required)","Card (provider integration required)"]}],"Preview purchase"));
   } else if (current === "p2p") {
-    body = card("P2P offer filters","Illustrative rows below explain the interface only; these are not verified sellers or current offers.",form([{label:"Asset",name:"asset",type:"select",options:["USDT","BTC","ETH"]},{label:"Trade side",name:"side",type:"select",options:["Buy","Sell"]},{label:"Payment method",name:"payment",type:"select",options:["Any method","Bank transfer","UPI","PayPal"]}],"Apply local filters")) + card("Offer list","No live P2P provider is connected.",table(["Advertiser","Price","Payment","Limits","Status"],[], "No verified live offers available."));
+    body = card("P2P offer filters","Sample rows are clearly marked as illustrative and are not verified sellers or current offers.",form([{label:"Asset",name:"asset",type:"select",options:["USDT","BTC","ETH"]},{label:"Trade side",name:"side",type:"select",options:["Buy","Sell"]},{label:"Payment method",name:"payment",type:"select",options:["Any method","Bank transfer","UPI","PayPal"]}],"Apply local filters")) + card("Offer list","Demo data only — no trade can be started.",'<p id="p2pStatus" class="muted" aria-live="polite">Showing illustrative examples, not live offers.</p><div id="p2pOffers"></div>');
   } else if (current === "futures") {
     body = card("Futures order ticket","Simulation only. Leverage can amplify losses and liquidation risk.",form([{label:"Contract",name:"pair",type:"select",options:["BTCUSDT Perpetual","ETHUSDT Perpetual","SOLUSDT Perpetual"]},{label:"Side",name:"side",type:"select",options:["Buy / Long","Sell / Short"]},{label:"Order type",name:"type",type:"select",options:["Market","Limit"]},{label:"Quantity",name:"qty",type:"number",placeholder:"0.001",min:"0",step:"any",required:true},{label:"Leverage",name:"leverage",type:"select",options:["1x","2x","3x","5x","10x"]}],"Preview simulated order")) + card("Risk checklist","Understand liquidation price, margin mode, funding fees, and position size before trading.","<span class='muted'>No real futures exchange is connected.</span>");
   } else if (current === "deposit") {
@@ -91,7 +91,7 @@
     body = card("Account checklist","These controls are informational until secure authentication and server-side account management are implemented.",table(["Setting","Status"],sets[current])) + card("Account protection","Never share passwords, seed phrases, private keys, recovery codes, or API secrets.","<span class='muted'>No account changes can be saved here.</span>");
     if(current==="profile") body += card("Preference preview","Choose a display currency and theme preference locally.",form([{label:"Display currency",name:"currency",type:"select",options:["USDT","USD","INR","EUR"]},{label:"Theme",name:"theme",type:"select",options:["Dark","Light","System"]}],"Save local preview"));
   } else if (current === "help-center") {
-    body = card("Search support topics","Search common product and safety questions.",'<input id="helpSearch" class="platform-search" type="search" placeholder="Search topics…"><div id="helpResults" class="platform-links"></div>') + card("Common questions","Are orders real? No. Can I deposit funds? No. Is the market feed an execution quote? No, it is public market information.",'<a href="support.html">Contact support →</a>');
+    body = card("Search support topics","Search common product and safety questions.",'<label>Search topics<input id="helpSearch" class="platform-search" type="search" placeholder="Try deposits, security, orders…"/></label><div id="helpResults" class="platform-grid"></div>') + card("Common questions","Are orders real? No. Can I deposit funds? No. Is the market feed an execution quote? No, it is public market information.",'<a href="support.html">Contact support →</a>');
   } else {
     const collection = {
       academy:[["Crypto basics","Understand assets, blockchains, wallets, and networks."],["Order types","Learn the difference between market, limit, and stop orders."],["Account security","Learn about 2FA, phishing, and recovery phrases."]],
@@ -141,10 +141,36 @@
   });
   const help = $("helpSearch");
   if (help) {
-    const out=$("helpResults"), topics=["Account security","Deposits and withdrawals","Trading orders","Market data","Identity verification","Fees and limits","Network selection","API key safety"];
-    const render=()=>{out.innerHTML=topics.filter(t=>t.toLowerCase().includes(help.value.toLowerCase())).map(t=>'<a href="support.html">'+esc(t)+'</a>').join('')||'<span class="muted">No matching topics.</span>';};
+    const out=$("helpResults"), topics=[
+      ["Account security","Use a unique password, enable two-factor authentication, and never share recovery codes."],
+      ["Deposits and withdrawals","Always verify asset and network; this frontend cannot issue addresses or process withdrawals."],
+      ["Trading orders","Market orders prioritize execution; limit orders specify a price. This site does not execute orders."],
+      ["Market data","Public ticker prices can be delayed or unavailable and are not guaranteed execution quotes."],
+      ["Identity verification","Real verification requires a trusted provider and secure document handling."],
+      ["Fees and limits","Fees and limits must be supplied by a verified service; no live fee schedule is connected."],
+      ["Network selection","The sending and receiving networks must match or funds may be lost."],
+      ["API key safety","Never place API secrets in frontend code. Use least-privilege scopes and IP restrictions."]
+    ];
+    const render=()=>{const matches=topics.filter(t=>(t[0]+" "+t[1]).toLowerCase().includes(help.value.toLowerCase()));out.innerHTML=matches.map(t=>card(t[0],t[1],'<a href="support.html">Contact support →</a>')).join('')||'<p class="muted">No matching topics. Try a different keyword or contact support.</p>';};
     help.addEventListener("input",render);render();
   }
+  if (current === "p2p") {
+    const offers=[
+      {asset:"USDT",side:"Buy",payment:"UPI",price:"₹83.10",limits:"₹1,000–₹25,000"},
+      {asset:"USDT",side:"Buy",payment:"Bank transfer",price:"₹83.25",limits:"₹5,000–₹75,000"},
+      {asset:"BTC",side:"Buy",payment:"Bank transfer",price:"Illustrative only",limits:"₹2,000–₹50,000"},
+      {asset:"ETH",side:"Sell",payment:"UPI",price:"Illustrative only",limits:"₹1,000–₹20,000"},
+      {asset:"USDT",side:"Sell",payment:"PayPal",price:"Illustrative only",limits:"₹2,000–₹30,000"}
+    ];
+    const formEl=$("localForm"), target=$("p2pOffers"), status=$("p2pStatus");
+    const renderOffers=(asset="USDT",side="Buy",payment="Any method")=>{
+      const matches=offers.filter(o=>o.asset===asset&&o.side===side&&(payment==="Any method"||o.payment===payment));
+      target.innerHTML=matches.length?table(["Asset","Side","Payment","Indicative price","Limits","Label"],matches.map(o=>[o.asset,o.side,o.payment,o.price,o.limits,"DEMO — NOT LIVE"])):'<p class="muted">No illustrative rows match these filters.</p>';
+      status.textContent="Showing "+matches.length+" illustrative row(s). Not a live marketplace; no seller is verified and no trade can be started.";
+    };
+    if(formEl)formEl.addEventListener("submit",e=>{e.preventDefault();const d=Object.fromEntries(new FormData(formEl).entries());renderOffers(d.asset,d.side,d.payment);});
+    renderOffers();
+  }
   const filter=$("activityFilter");
-  if(filter)filter.addEventListener("input",()=>{const box=$("activityTable");box.innerHTML=table(["Date","Asset / pair","Type","Status","Amount"],[],"No account records available for this filter.");});
+  if(filter)filter.addEventListener("input",()=>{const box=$("activityTable");box.innerHTML=table(["Date","Asset / pair","Type","Status","Amount"],[],"No connected account records available. Search cannot reveal personal transactions until a secure account service is connected.");});
 })();
