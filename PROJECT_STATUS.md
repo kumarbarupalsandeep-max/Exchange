@@ -6,18 +6,18 @@ Last updated: 2026-10-16
 
 These are manual scope estimates, not automated test coverage.
 
-- Frontend page coverage: **85%**
+- Frontend page coverage: **90%**
 - Folder/file organization: **100%**
-- Main navigation and core demo interactions: **80%**
+- Main navigation and core demo interactions: **90%**
 - Responsive and accessibility QA: **45%**
-- Automated tests / browser QA: **0% verified**
+- Static checks (JS syntax, CSS braces, relative HTML links): **100% checked**\n- Browser QA / automated browser tests: **0% verified**
 - Live market API: **0%**
 - Backend / database: **0%**
 - Authentication and account security: **0%**
 - Real exchange orders / wallet / deposits / withdrawals: **0%**
 
 ```text
-Frontend prototype (estimated)  [█████████████████░░░] 85%
+Frontend prototype (estimated)  [██████████████████░░] 90%
 Full production exchange        [█████░░░░░░░░░░░░░░░] 25%
 ```
 
@@ -44,7 +44,7 @@ Full production exchange        [█████░░░░░░░░░░�
 - [ ] Verify every link, form state, and keyboard interaction in a browser
 - [ ] Improve consistency between homepage styling and secondary pages
 - [ ] Add loading, error, empty, and success states consistently
-- [ ] Add automated HTML/CSS/JS checks and smoke tests
+- [x] Static check JavaScript syntax and CSS brace balance\n- [ ] Add automated HTML/CSS/JS checks and browser smoke tests
 - [ ] Confirm GitHub Pages deployment and test the published URL
 
 ## Production work (separate phase)
