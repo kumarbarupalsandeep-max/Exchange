@@ -24,6 +24,9 @@ Real orders / deposits / custody   [Not part of frontend-only scope]
 - [x] Rewards Hub, Launchpool, Trading Bots, Copy Trading, Referral Program.
 - [x] Academy, Market News, Announcements, Help Center.
 - [x] Shared responsive styles and client-side preview interactions.
+- [x] Local validation for key forms (positive amounts, different assets/wallets, grid bounds).
+- [x] Convert screen can request public price data for an indicative estimate.
+- [ ] Complete page-specific production UI and real data integration remain pending.
 - [ ] Browser QA and accessibility review remains pending.
 - [ ] Secure backend, real authentication, order execution, and wallet/provider integration remain out of scope.
 
